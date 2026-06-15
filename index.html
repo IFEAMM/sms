@@ -6,6 +6,11 @@
     <title>SMS Sender</title>
     <style>
         body {
+            /* وضع رابط الصورة هنا */
+            background-image: url('https://ifeamm.github.io/sms/123.png'); /* استبدل هذا الرابط بمسار صورتك */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             background-color: #0f172a;
             color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,12 +21,13 @@
             margin: 0;
         }
         .card {
-            background-color: #1e293b;
+            background-color: rgba(30, 41, 59, 0.85); /* شفافية بسيطة لتظهر الخلفية */
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             width: 90%;
             max-width: 400px;
+            backdrop-filter: blur(5px); /* تأثير ضبابي خفيف للخلفية */
         }
         h2 { text-align: center; margin-bottom: 20px; }
         input {
@@ -74,6 +80,7 @@
         
         for (let i = 0; i < count; i++) {
             try {
+                // ملاحظة: قد تحتاج لتعديل الرابط إذا كان يتطلب توثيقاً
                 await fetch(`https://prodokd.maanaginx.com/care/api/user/sendLinksSMS/${phone}`);
                 status.innerText = `تم إرسال ${i + 1} من ${count}`;
             } catch (error) {
