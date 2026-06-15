@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>أداة إرسال الرسائل</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+        .container { max-width: 400px; margin: auto; }
+        input { width: 100%; margin-bottom: 10px; padding: 8px; }
+        button { width: 100%; padding: 10px; background: blue; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>إرسال رسائل SMS</h2>
+    <input type="text" id="phone" placeholder="أدخل رقم الجوال">
+    <input type="number" id="count" placeholder="عدد الرسائل" min="1" max="50">
+    <button onclick="startSending()">بدء الإرسال</button>
+    <p id="status"></p>
+</div>
+
+<script>
+    async function startSending() {
+        const phone = document.getElementById('phone').value;
+        const count = document.getElementById('count').value;
+        const status = document.getElementById('status');
+
+        if (!phone || !count) {
+            alert("يرجى تعبئة الحقول!");
+            return;
+        }
+
+        status.innerText = "جاري الإرسال...";
+
+        for (let i = 0; i < count; i++) {
+            try {
+                // الرابط المذكور
+                await fetch(`https://prodokd.maanaginx.com/care/api/user/sendLinksSMS/${phone}`);
+                console.log(`تم إرسال الرسالة رقم ${i + 1}`);
+            } catch (error) {
+                console.error("خطأ في الإرسال", error);
+            }
+        }
+        status.innerText = "تم الانتهاء من العمليات.";
+    }
+</script>
+
+</body>
+</html>
